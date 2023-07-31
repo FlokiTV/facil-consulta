@@ -2,8 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\MedicoPacienteController;
 use App\Models\Cidade;
 use App\Models\Medico;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +36,7 @@ Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
     $medicos = Medico::where('cidade_id', $id_cidade)->get();
     return $medicos;
 });
+
+Route::get('/medicos/{id_medico}/pacientes', [MedicoPacienteController::class, 'getPacientesVinculados']);
+
+Route::post('/pacientes', [PacienteController::class, 'store']);
