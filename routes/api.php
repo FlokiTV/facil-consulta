@@ -28,3 +28,8 @@ Route::get('/medicos', function () {
     $medicos = Medico::all();
     return $medicos;
 });
+
+Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
+    $medicos = Medico::where('cidade_id', $id_cidade)->get();
+    return $medicos;
+});
