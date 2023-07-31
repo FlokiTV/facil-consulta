@@ -19,7 +19,7 @@ class PacienteFactory extends Factory
         return [
             'nome' => fake()->name,
             'cpf' => random_int(100, 999).".".random_int(100, 999).".".random_int(100, 999)."-".random_int(10, 99),
-            'celular' => "(11) 0 ".random_int(1234,9999)."-".random_int(1234,9999),
+            'celular' => "(11) 9 ".random_int(1234,9999)."-".random_int(1234,9999),
         ];
     }
 }
