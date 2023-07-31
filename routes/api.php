@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Cidade;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/cidades', function () {
+    $cidades = Cidade::all();
+    return $cidades;
 });
