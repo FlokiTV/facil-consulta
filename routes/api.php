@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Cidade;
+use App\Models\Medico;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/cidades', function () {
     $cidades = Cidade::all();
     return $cidades;
+});
+
+Route::get('/medicos', function () {
+    $medicos = Medico::all();
+    return $medicos;
 });
