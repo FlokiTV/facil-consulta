@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MedicoPacienteController;
 use App\Models\Cidade;
 use App\Models\Medico;
@@ -41,8 +42,7 @@ Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
     return $medicos;
 });
 // Adicionar medico
-// 
-// 
+Route::post('/medicos', [MedicoController::class, 'store']);
 /*
     Pacientes
 */
