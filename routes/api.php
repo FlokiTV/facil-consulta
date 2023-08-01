@@ -40,6 +40,9 @@ Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
     $medicos = Medico::where('cidade_id', $id_cidade)->get();
     return $medicos;
 });
+// Adicionar medico
+// 
+// 
 /*
     Pacientes
 */
