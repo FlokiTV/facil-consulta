@@ -12,14 +12,12 @@ URL de testes: http://44.217.200.121:8080/api/
 
 phpMyAdmin: http://44.217.200.121:8081
 
-
 ## API
 ```
 legenda das rotas:
 🔓 pública
 🔒 privada
 ```
-
 ### Cidades
 Listar cidades
 
@@ -36,7 +34,6 @@ Listar médicos de uma cidade
 🔓 GET  /cidades/{{id_cidade}}/medicos
 ```
 Adicionar novo médico
-
 ```js
 🔒 POST /medicos 
 {
@@ -91,6 +88,6 @@ Autenticação
 ### Observações sobre o teste
 
 Existem pequenas divergências entre o PDF e as coleções do Postman
- - Na coleção existe o `POST /medicos`, que não é exigido no teste escrito
+ - Na coleção existe o `POST /medicos - Adicionar um novo médico`, que não é exigido no teste escrito
  - No PDF, 3.3.2. Atualizar paciente, exige o método `POST` e na coleção é utilizado o `PUT`
  - Ao vincular o paciente com o médico, existe a redundância do `id_medico` como parâmetro da url e no corpo da requisição
