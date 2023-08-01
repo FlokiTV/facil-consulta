@@ -6,7 +6,6 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MedicoPacienteController;
 use App\Models\Cidade;
-use App\Models\Medico;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Cidades
-// [READ]
 Route::get('/cidades', function () {
     $cidades = Cidade::all();
     return $cidades;
