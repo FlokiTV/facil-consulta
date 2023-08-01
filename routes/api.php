@@ -26,13 +26,13 @@ Route::get('/cidades', function () {
     $cidades = Cidade::all();
     return $cidades;
 });
-Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
-    $medicos = Medico::where('cidade_id', $id_cidade)->get();
-    return $medicos;
-});
 // Medicos
 Route::get('/medicos', function () {
     $medicos = Medico::all();
+    return $medicos;
+});
+Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
+    $medicos = Medico::where('cidade_id', $id_cidade)->get();
     return $medicos;
 });
 Route::get('/medicos/{id_medico}/pacientes', [MedicoPacienteController::class, 'getPacientesVinculados']);

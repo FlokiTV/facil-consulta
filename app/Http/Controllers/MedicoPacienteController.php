@@ -52,7 +52,10 @@ class MedicoPacienteController extends Controller
             return response()->json(['message' => 'Paciente não encontrado'], 404);
         }
 
-        $medico->pacientes()->attach($paciente->id);
+        $medicoPaciente = MedicoPaciente::create([
+            'medico_id' => $medico->id,
+            'paciente_id' => $paciente->id,
+        ]);
 
         return response()->json(['medico' => $medico, 'paciente' => $paciente]);
     }
