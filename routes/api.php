@@ -40,3 +40,5 @@ Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
 Route::get('/medicos/{id_medico}/pacientes', [MedicoPacienteController::class, 'getPacientesVinculados']);
 
 Route::post('/pacientes', [PacienteController::class, 'store']);
+
+Route::put('/pacientes/{id_paciente}', [PacienteController::class, 'update']);

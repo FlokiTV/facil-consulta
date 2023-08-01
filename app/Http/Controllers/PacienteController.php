@@ -23,4 +23,25 @@ class PacienteController extends Controller
 
         return response()->json($paciente);
     }
+    public function update(Request $request, $id_paciente)
+    {
+        $request->validate([
+            'nome' => 'sometimes|string|max:100',
+            'celular' => 'sometimes|string|max:20',
+        ]);
+
+        $paciente = Paciente::find($id_paciente);
+
+        if (!$paciente) {
+            return response()->json(['message' => 'Paciente não encontrado'], 404);
+        }
+        if ($request->filled('nome')) {
+            $paciente->nome = $request->nome;
+        }
+        if ($request->filled('celular')) {
+            $paciente->celular = $request->celular;
+        }
+        $paciente->save();
+        return response()->json($paciente);
+    }
 }
