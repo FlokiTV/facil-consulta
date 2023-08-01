@@ -95,4 +95,5 @@ Existem pequenas divergências entre o PDF e as coleções do Postman
 ### Referências
 
 https://laravel.com/docs/10.x/sail
+
 https://jwt-auth.readthedocs.io/en/develop/auth-guard/
