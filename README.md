@@ -16,7 +16,18 @@ phpMyAdmin: http://44.217.200.121:8081
 ```
 legenda das rotas:
 🔓 pública
-🔒 privada
+🔒 privada - Authorization: Bearer eyJhbGciOiJIUzI1NiI...
+```
+Autenticação
+```js
+🔒 GET  /user
+```
+```js
+🔒 POST /login
+{
+    email: "christian.ramires@example.com",
+    password: "password"
+}
 ```
 ### Cidades
 Listar cidades
@@ -73,17 +84,6 @@ Atualizar paciente
     celular: "(11) 98484-6362"
 }
 ```
-Autenticação
-```js
-🔒 GET  /user
-```
-```js
-🔒 POST /login
-{
-    email: "christian.ramires@example.com",
-    password: "password"
-}
-```
 
 ### Observações sobre o teste
 
@@ -91,3 +91,8 @@ Existem pequenas divergências entre o PDF e as coleções do Postman
  - Na coleção existe o `POST /medicos - Adicionar um novo médico`, que não é exigido no teste escrito
  - No PDF, 3.3.2. Atualizar paciente, exige o método `POST` e na coleção é utilizado o `PUT`
  - Ao vincular o paciente com o médico, existe a redundância do `id_medico` como parâmetro da url e no corpo da requisição
+
+### Referências
+
+https://laravel.com/docs/10.x/sail
+https://jwt-auth.readthedocs.io/en/develop/auth-guard/
