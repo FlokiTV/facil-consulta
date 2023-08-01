@@ -1,18 +1,17 @@
 # Facil Consulta
 
+```
 Teste técnico para desenvolvedor Back-end Pleno.
-
-
 Projeto criado com Docker, Laravel Sail 10 e banco de dados MySQL.
-
 Hospedado na AWS EC2 tier gratuito.
+```
+Link para o teste:
+[PDF](https://drive.google.com/drive/folders/1xgEfsnMSpv-jhE7fPIDr3X7_DllcJrY0)
 
 URL de testes: http://44.217.200.121:8080/api/
 
 phpMyAdmin: http://44.217.200.121:8081
 
-Link para o teste:
-[PDF](https://drive.google.com/drive/folders/1xgEfsnMSpv-jhE7fPIDr3X7_DllcJrY0)
 
 ## API
 ```
