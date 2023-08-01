@@ -9,30 +9,22 @@ use App\Models\Paciente;
 
 class MedicoPacienteController extends Controller
 {
-    // public function getPacientesVinculados($id_medico)
-    // {
-    //     $medico = Medico::find($id_medico);
-    //     if (!$medico) {
-    //         return response()->json(['message' => 'Médico não encontrado'], 404);
-    //     }
-
-    //     $pacientes = Paciente::join('medico_paciente', 'pacientes.id', '=', 'medico_paciente.paciente_id')
-    //         ->join('medicos', 'medico_paciente.medico_id', '=', 'medicos.id')
-    //         ->where('medicos.id', $id_medico)
-    //         ->select('pacientes.*')
-    //         ->get();
-
-    //     return response()->json($pacientes);
-    // }
     public function getPacientesVinculados($id_medico)
     {
         $medico = Medico::find($id_medico);
         if (!$medico) {
             return response()->json(['message' => 'Médico não encontrado'], 404);
         }
-        $pacientes = $medico->pacientes;
+
+        $pacientes = Paciente::join('medico_pacientes', 'pacientes.id', '=', 'medico_pacientes.paciente_id')
+            ->join('medicos', 'medico_pacientes.medico_id', '=', 'medicos.id')
+            ->where('medicos.id', $id_medico)
+            ->select('pacientes.*')
+            ->get();
+
         return response()->json($pacientes);
     }
+    
     public function vincularPaciente(Request $request, $id_medico)
     {
         $request->validate([
