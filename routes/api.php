@@ -32,17 +32,11 @@ Route::get('/cidades', function () {
     Medicos
 */
 // Listar médicos
-Route::get('/medicos', function () {
-    $medicos = Medico::all();
-    return $medicos;
-});
-// Listar médicos de uma cidade
-Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
-    $medicos = Medico::where('cidade_id', $id_cidade)->get();
-    return $medicos;
-});
+Route::get('/medicos', [MedicoController::class, 'all']);
 // Adicionar medico
 Route::post('/medicos', [MedicoController::class, 'store']);
+// Listar médicos de uma cidade
+Route::get('/cidades/{id_cidade}/medicos', [MedicoController::class, 'getByCidade']);
 /*
     Pacientes
 */

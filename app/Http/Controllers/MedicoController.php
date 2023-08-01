@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class MedicoController extends Controller
 {
+    public function all()
+    {
+        $medicos = Medico::all();
+        return response()->json($medicos);
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -28,5 +33,16 @@ class MedicoController extends Controller
         ]);
 
         return response()->json($medico);
+    }
+    public function getByCidade(Request $request, $cidade_id)
+    {
+        $cidade = Cidade::find($cidade_id);
+
+        if (!$cidade) {
+            return response()->json(['message' => 'Cidade não encontrada'], 404);
+        }
+
+        $medicos = Medico::where('cidade_id', $cidade_id)->get();
+        return response()->json($medicos);
     }
 }
