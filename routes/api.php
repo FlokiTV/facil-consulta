@@ -21,24 +21,22 @@ use App\Models\Medico;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// Cidades
 Route::get('/cidades', function () {
     $cidades = Cidade::all();
     return $cidades;
 });
-
-Route::get('/medicos', function () {
-    $medicos = Medico::all();
-    return $medicos;
-});
-
 Route::get('/cidades/{id_cidade}/medicos', function ($id_cidade) {
     $medicos = Medico::where('cidade_id', $id_cidade)->get();
     return $medicos;
 });
-
+// Medicos
+Route::get('/medicos', function () {
+    $medicos = Medico::all();
+    return $medicos;
+});
 Route::get('/medicos/{id_medico}/pacientes', [MedicoPacienteController::class, 'getPacientesVinculados']);
-
+Route::post('/medicos/{id_medico}/pacientes', [MedicoPacienteController::class, 'vincularPaciente']);
+// Pacientes
 Route::post('/pacientes', [PacienteController::class, 'store']);
-
 Route::put('/pacientes/{id_paciente}', [PacienteController::class, 'update']);
