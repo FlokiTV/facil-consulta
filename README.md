@@ -85,7 +85,13 @@ Atualizar paciente
 }
 ```
 
-### Observações sobre o teste
+## Rotina de testes
+Os testes foram desenvolvidos com o node test runner
+#### Teste de privacidade de rotas
+```
+sail node tests/rotas.js
+```
+### Observações sobre o teste técnico
 
 Existem pequenas divergências entre o PDF e as coleções do Postman
  - Na coleção existe o `POST /medicos - Adicionar um novo médico`, que não é exigido no teste escrito

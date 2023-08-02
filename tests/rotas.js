@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert";
-import { $axios, randomInt } from "./config.js";
+import { $axios } from "./config.js";
 
 test("Teste de rotas públicas", async ($) => {
     await $.test("Listar cidades", async () => {
