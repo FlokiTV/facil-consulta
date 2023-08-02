@@ -11,7 +11,6 @@ export async function login() {
         password: "password"
     });
     const { token } = data.data;
-    console.log(token)
     return token || false;
 }
 
