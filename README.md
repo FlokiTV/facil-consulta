@@ -91,6 +91,18 @@ Os testes foram desenvolvidos com o node test runner
 ```
 sail node tests/rotas.js
 ```
+#### Teste autenticação
+```
+sail node tests/auth.js
+```
+#### Teste de médicos
+```
+sail node tests/medicos.js
+```
+#### Teste de pacientes
+```
+sail node tests/pacientes.js
+```
 ### Observações sobre o teste técnico
 
 Existem pequenas divergências entre o PDF e as coleções do Postman
