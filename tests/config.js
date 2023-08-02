@@ -11,7 +11,12 @@ export async function login() {
         password: "password"
     });
     const { token } = data.data;
-    return token || false;
+    return axios.create({
+        baseURL,
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    });
 }
 
 export function randomInt(min, max) {
