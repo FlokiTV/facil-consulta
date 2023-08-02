@@ -5,6 +5,16 @@ export const $axios = axios.create({
     baseURL,
 });
 
+export async function login() {
+    let { data } = await $axios.post("login", {
+        email: "christian.ramires@example.com",
+        password: "password"
+    });
+    const { token } = data.data;
+    console.log(token)
+    return token || false;
+}
+
 export function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
