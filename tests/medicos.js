@@ -4,9 +4,11 @@ import { login, Schema } from "./config.js";
 test("Teste de rota: médicos", async ($) => {
     let $axios;
     let $data;
+
     await $.test("Autenticação", async () => {
         $axios = await login();
     });
+
     await $.test("Adicionar um novo médico", async () => {
         try {
             let { data } = await $axios.post("/medicos", {
@@ -20,6 +22,7 @@ test("Teste de rota: médicos", async ($) => {
         }
         Schema.medico.parse($data)
     });
+
     await $.test("Vincular Paciente", async () => {
         try {
             let { data } = await $axios.post("/medicos/1/pacientes", {
@@ -34,6 +37,7 @@ test("Teste de rota: médicos", async ($) => {
         Schema.medico.parse(medico)
         Schema.paciente.parse(paciente)
     });
+    
     await $.test("Listar pacientes do médico", async () => {
         try {
             let { data } = await $axios.get("/medicos/1/pacientes");
