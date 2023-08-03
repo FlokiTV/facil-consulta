@@ -6,7 +6,7 @@ test("Teste de rota: cidades", async ($) => {
     await $.test("Listar cidades", async () => {
         try {
             let { data } = await $axios.get("/cidades");
-            $data = data
+            $data = data[0]
         } catch (error) {
             console.log(error.response.status);
         }
