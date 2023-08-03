@@ -1,9 +1,9 @@
 import test from "node:test";
-import assert from "node:assert";
-import { login } from "./config.js";
+import { login, Schema } from "./config.js";
 
 test("Teste de rota: médicos", async ($) => {
     let $axios;
+    let $data;
     await $.test("Autenticação", async () => {
         $axios = await login();
     });
@@ -14,19 +14,11 @@ test("Teste de rota: médicos", async ($) => {
                 especialidade: "Neurologista",
                 cidade_id: 1
             });
-            // {
-            //     nome: 'Dra. Alessandra Moura',
-            //     especialidade: 'Neurologista',
-            //     cidade_id: 1,
-            //     updated_at: '2023-08-03T18:22:46.000000Z',
-            //     created_at: '2023-08-03T18:22:46.000000Z',
-            //     id: 10
-            //   }
-            console.log(data)
-            // assert.equal(error.response.status, 401, "'/medicos/1/pacientes' should return 401");
+            $data = data
         } catch (error) {
             throw new Error(error.response.data.message);
         }
+        Schema.medico.parse($data)
     });
     await $.test("Vincular Paciente", async () => {
         try {
@@ -34,18 +26,22 @@ test("Teste de rota: médicos", async ($) => {
                 medico_id: 1,
                 paciente_id: 1
             });
-            console.log(data)
+            $data = data
         } catch (error) {
             throw new Error(error.response.data.message);
         }
+        let { medico, paciente } = $data
+        Schema.medico.parse(medico)
+        Schema.paciente.parse(paciente)
     });
     await $.test("Listar pacientes do médico", async () => {
         try {
             let { data } = await $axios.get("/medicos/1/pacientes");
-            console.log(data)
-            // assert.equal(error.response.status, 401, "'/medicos/1/pacientes' should return 401");
+            $data = data
         } catch (error) {
             throw new Error(error.response.data.message);
         }
+        let paciente = $data[0]
+        Schema.paciente.parse(paciente)
     });
 })
