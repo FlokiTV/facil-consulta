@@ -9,13 +9,23 @@ test("Teste de rota: médicos", async ($) => {
     });
     await $.test("Adicionar um novo médico", async () => {
         try {
-            await $axios.post("/medicos", {
+            let { data } = await $axios.post("/medicos", {
                 nome: "Dra. Alessandra Moura",
                 especialidade: "Neurologista",
                 cidade_id: 1
             });
+            // {
+            //     nome: 'Dra. Alessandra Moura',
+            //     especialidade: 'Neurologista',
+            //     cidade_id: 1,
+            //     updated_at: '2023-08-03T18:22:46.000000Z',
+            //     created_at: '2023-08-03T18:22:46.000000Z',
+            //     id: 10
+            //   }
+            console.log(data)
+            // assert.equal(error.response.status, 401, "'/medicos/1/pacientes' should return 401");
         } catch (error) {
-            assert.equal(error.response.status, 401, "'/medicos/1/pacientes' should return 401");
+            throw new Error(error.response.data.message);
         }
     });
     await $.test("Vincular Paciente", async () => {
@@ -24,15 +34,18 @@ test("Teste de rota: médicos", async ($) => {
                 medico_id: 1,
                 paciente_id: 1
             });
+            console.log(data)
         } catch (error) {
             throw new Error(error.response.data.message);
         }
     });
     await $.test("Listar pacientes do médico", async () => {
         try {
-            await $axios.get("/medicos/1/pacientes");
+            let { data } = await $axios.get("/medicos/1/pacientes");
+            console.log(data)
+            // assert.equal(error.response.status, 401, "'/medicos/1/pacientes' should return 401");
         } catch (error) {
-            assert.equal(error.response.status, 401, "'/medicos/1/pacientes' should return 401");
+            throw new Error(error.response.data.message);
         }
     });
 })
