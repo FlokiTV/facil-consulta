@@ -18,6 +18,9 @@ class PacienteController extends Controller
         if (!Validator::cpf($request->cpf)) {
             return response()->json(['message' => 'O CPF precisa ser válido'], 400);
         }
+        if (!Validator::tel($request->celular)) {
+            return response()->json(['message' => 'O celular precisa ser válido'], 400);
+        }
         $paciente = Paciente::create([
             'nome' => $request->nome,
             'cpf' => $request->cpf,
