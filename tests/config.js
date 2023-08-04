@@ -23,6 +23,28 @@ export function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+export function generateCPF() {
+    const randomNumbers = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10));
+
+    const firstVerifierDigit = calculateCPFVerifierDigit(randomNumbers);
+    randomNumbers.push(firstVerifierDigit);
+
+    const secondVerifierDigit = calculateCPFVerifierDigit(randomNumbers);
+    randomNumbers.push(secondVerifierDigit);
+
+    return randomNumbers.join('');
+}
+
+function calculateCPFVerifierDigit(cpfArray) {
+    const total = cpfArray.reduce((acc, value, index) => {
+        const multiplier = cpfArray.length + 1 - index;
+        return acc + value * multiplier;
+    }, 0);
+
+    const remainder = total % 11;
+    return remainder < 2 ? 0 : 11 - remainder;
+}
+
 export const Schema = {
     medico: z.object({
         id: z.number(),
