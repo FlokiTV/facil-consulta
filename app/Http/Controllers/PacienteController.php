@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paciente;
+use App\Models\Validator;
 
 class PacienteController extends Controller
 {
@@ -14,7 +15,9 @@ class PacienteController extends Controller
             'cpf' => 'required|string|max:20|unique:pacientes',
             'celular' => 'required|string|max:20',
         ]);
-
+        if (!Validator::cpf($request->cpf)) {
+            return response()->json(['message' => 'O CPF precisa ser válido'], 400);
+        }
         $paciente = Paciente::create([
             'nome' => $request->nome,
             'cpf' => $request->cpf,
