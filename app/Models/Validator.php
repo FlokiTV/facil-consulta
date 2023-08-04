@@ -18,15 +18,17 @@ class Validator extends Model
             return false;
         }
 
-        for ($i = 9, $j = 0, $sum = 0; $i > 0; $i--, $j++) {
-            $sum += $cpf[$j] * $i;
+        $sum = 0;
+        for ($i = 0; $i < 9; $i++) {
+            $sum += (int)$cpf[$i] * (10 - $i);
         }
 
         $res = $sum % 11;
         $dig1 = ($res < 2) ? 0 : 11 - $res;
 
-        for ($i = 10, $j = 0, $sum = 0; $i > 1; $i--, $j++) {
-            $sum += $cpf[$j] * $i;
+        $sum = 0;
+        for ($i = 0; $i < 10; $i++) {
+            $sum += (int)$cpf[$i] * (11 - $i);
         }
 
         $res = $sum % 11;
