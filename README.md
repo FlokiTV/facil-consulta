@@ -18,10 +18,18 @@ legenda das rotas:
 🔓 pública
 🔒 privada - Authorization: Bearer eyJhbGciOiJIUzI1NiI...
 ```
-Autenticação
+### Autenticação
+<details>
+<summary>Listar usuário autenticado</summary>
+
 ```js
 🔒 GET  /user
 ```
+</details>
+
+<details>
+<summary>Autenticação</summary>
+
 ```js
 🔒 POST /login
 {
@@ -29,22 +37,37 @@ Autenticação
     password: "password"
 }
 ```
+</details>
+
 ### Cidades
-Listar cidades
+<details>
+<summary>Listar cidades</summary>
 
 ```js
 🔓 GET  /cidades
 ```
+</details>
+
 ### Médicos
-Listar médicos
+<details>
+<summary>Listar médicos</summary>
+
 ```js
 🔓 GET  /medicos
 ```
-Listar médicos de uma cidade
+</details>
+
+<details>
+<summary>Listar médicos de uma cidade</summary>
+
 ```js
 🔓 GET  /cidades/{{id_cidade}}/medicos
 ```
-Adicionar novo médico
+</details>
+
+<details>
+<summary>Adicionar novo médico</summary>
+
 ```js
 🔒 POST /medicos 
 {
@@ -53,7 +76,11 @@ Adicionar novo médico
     cidade_id: {{id_cidade}}
 }
 ```
-Vincular paciente ao médico
+</details>
+
+<details>
+<summary>Vincular paciente ao médico</summary>
+
 ```js
 🔒 POST /medicos/{{id_medico}}/pacientes
 {
@@ -61,12 +88,21 @@ Vincular paciente ao médico
     paciente_id: {{id_paciente}}
 }
 ```
+</details>
+
 ### Pacientes
-Listar pacientes do médico
+
+<details>
+<summary>Listar pacientes do médico</summary>
+
 ```js
 🔒 GET  /medicos/{{id_medico}}/pacientes
 ```
-Adicionar novo paciente
+</details>
+
+<details>
+<summary>Adicionar novo paciente</summary>
+
 ```js
 🔒 POST /pacientes
 {
@@ -75,7 +111,11 @@ Adicionar novo paciente
     celular: "(11) 9 8432-5789"
 }
 ```
-Atualizar paciente
+</details>
+
+<details>
+<summary>Atualizar paciente</summary>
+
 ```js
 🔒 PUT  /pacientes/{{id_paciente}}
 🔒 POST /pacientes/{{id_paciente}}
@@ -84,6 +124,7 @@ Atualizar paciente
     celular: "(11) 98484-6362"
 }
 ```
+</details>
 
 ## Rotina de testes
 Os testes foram desenvolvidos com o node test runner
@@ -103,15 +144,18 @@ sail node tests/medicos.js
 ```
 sail node tests/pacientes.js
 ```
-### Observações sobre o teste técnico
+### Referências
+
+https://laravel.com/docs/10.x/sail
+
+https://jwt-auth.readthedocs.io/en/develop/auth-guard/
+
+<details>
+<summary>Observações sobre o teste técnico</summary>
 
 Existem pequenas divergências entre o PDF e as coleções do Postman
  - Na coleção existe o `POST /medicos - Adicionar um novo médico`, que não é exigido no teste escrito
  - No PDF, 3.3.2. Atualizar paciente, exige o método `POST` e na coleção é utilizado o `PUT`
  - Ao vincular o paciente com o médico, existe a redundância do `id_medico` como parâmetro da url e no corpo da requisição
 
-### Referências
-
-https://laravel.com/docs/10.x/sail
-
-https://jwt-auth.readthedocs.io/en/develop/auth-guard/
+</details>
