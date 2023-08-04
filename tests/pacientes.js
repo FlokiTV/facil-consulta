@@ -1,9 +1,9 @@
 import test from "node:test";
-import { Schema, login, randomInt } from "./config.js";
+import { Schema, generateCPF, login, randomInt } from "./config.js";
 
 const $paciente = {
   "nome": "Matheus Henrique",
-  "cpf": `${randomInt(111, 999)}.${randomInt(111, 999)}.${randomInt(111, 999)}-${randomInt(11, 99)}`,
+  "cpf": generateCPF(),
   "celular": "(11) 98432-5789"
 }
 
@@ -11,7 +11,7 @@ test("Teste de rota: pacientes", async ($) => {
   let $axios;
   let $data;
   let id = 0;
-  
+
   await $.test("Autenticação", async () => {
     $axios = await login();
   });
@@ -22,7 +22,7 @@ test("Teste de rota: pacientes", async ($) => {
       id = data.id
       $data = data
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.response);
     }
     Schema.paciente.parse($data);
   });
